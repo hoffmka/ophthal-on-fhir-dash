@@ -31,6 +31,8 @@ python app.py
 
 The Dash App is available at http://localhost:8050.
 
-![bcva-example-1](docs/imgs/bcva-44491871.png)
-
 Happy testing!
+
+![bcva-example-1](docs/imgs/bcva-44491871-edtrs.png)
+
+![bcva-example-1](docs/imgs/bcva-44491871-logmar.png)

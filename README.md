@@ -21,7 +21,9 @@ http://hapi.fhir.org/baseR4/Patient/44491871
 To get the Observation resources as Bundle.
 http://hapi.fhir.org/baseR4/Observation?patient=44491871
 
-[FHIR-PIRATE](https://github.com/UMEssen/FHIR-PYrate) and [pandas](https://pandas.pydata.org) were used to access the FHIR resources and subsequently process the data.
+[FHIR-PIRATE](https://github.com/UMEssen/FHIR-PYrate) were used to access the FHIR resources and subsequently process the data.
+
+[Dash Bootstrap Components](https://dash-bootstrap-components.opensource.faculty.ai) were used for styling.
 
 To run the application:
 

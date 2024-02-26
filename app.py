@@ -1,9 +1,8 @@
-import dash
 from aux import bcva_edtrs_to_logmar
+import dash
+import dash_bootstrap_components as dbc
 from dash import Dash, dcc, html, Input, Output, callback
 from fhir_pyrate import Pirate # Library for accessing FHIR resources
-
-import pandas as pd
 import plotly.graph_objs as go
 
 ########################
@@ -41,28 +40,74 @@ observation_right_eye['logmar_value'] = observation_right_eye['valueQuantity_val
 #########################
 # Initialize the Dash app
 #########################
-app = dash.Dash(__name__)
+# Add the theme SUPERHERO to this app
+# For more information on available themes see the themes documentation https://dash-bootstrap-components.opensource.faculty.ai/docs/themes/
+app = dash.Dash(external_stylesheets=[dbc.themes.SUPERHERO])
 
 # Initialize figure
 fig = go.Figure()
 
+# Simple Navbar
+navbar = dbc.NavbarSimple(
+    children=[
+        dbc.NavItem(dbc.NavLink("Page 1", href="#")),
+        dbc.DropdownMenu(
+            children=[
+                dbc.DropdownMenuItem("More pages", header=True),
+                dbc.DropdownMenuItem("Page 2", href="#"),
+                dbc.DropdownMenuItem("Page 3", href="#"),
+            ],
+            nav=True,
+            in_navbar=True,
+            label="More",
+        ),
+    ],
+    brand="NavbarSimple",
+    brand_href="#",
+    color="primary",
+    dark=True,
+)
 
+# table for patient info
+list_group = dbc.ListGroup(
+    [
+        dbc.ListGroupItem(
+            [
+                html.Div(
+                    [
+                        html.H5("Max Mustermann"),
+                    ],
+                    className="d-flex w-100 justify-content-between",
+                ),
+                html.P("male", className="mb-1"),
+                html.Small("Date of birth: 1945-09-31 (age: 78)", className="text-muted"),
+            ]
+        ),
+    ]
+)
+
+##############################
 # Define the layout of the app
-app.layout = html.Div([
+##############################
+app.layout = dbc.Container([
     # Title section
-    html.Div(
+    dbc.Container(
         children=[
             html.H1(children='Ophthalmology Dash App Example', 
                     style={'textAlign': 'center', 'marginBottom': 30})
         ],
-        style={'backgroundColor': '#f2f2f2', 'padding': '20px 40px'}
+        #style={'backgroundColor': '#f2f2f2', 'padding': '20px 40px'}
     ),
+    # Navbar section
+    navbar,
+    # Patient demographics section
+    list_group,
     # Change yaxis unit section
-    dcc.RadioItems(
+    dbc.RadioItems(
         id='yaxis-type',
         options=['EDTRS letters score', 'logMAR'],
         value='EDTRS letters score',
-        labelStyle={'display': 'inline-block', 'margin-right': '20px'}
+        inline=True,
     ),
     # Graph section
     dcc.Graph(

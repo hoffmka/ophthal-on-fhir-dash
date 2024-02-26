@@ -44,6 +44,9 @@ observation_right_eye['logmar_value'] = observation_right_eye['valueQuantity_val
 # For more information on available themes see the themes documentation https://dash-bootstrap-components.opensource.faculty.ai/docs/themes/
 app = dash.Dash(external_stylesheets=[dbc.themes.SUPERHERO])
 
+# for deploying, e.g. on Render
+server = app.server
+
 # Initialize figure
 fig = go.Figure()
 

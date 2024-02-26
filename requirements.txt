@@ -1,5 +1,6 @@
 dash
 dash-bootstrap-components
-plotly
-pandas
 fhir-pyrate
+gunicorn
+pandas
+plotly
